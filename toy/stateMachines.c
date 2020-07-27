@@ -1,31 +1,39 @@
 #include <msp430.h>
+#include <libTimer.h>
 #include "stateMachines.h"
 #include "led.h"
 #include "switches.h"
 #include "buzzer.h"
-#include "lcdutils.h"
-#include "lcddraw.h"
+#include <lcdutils.h>
+#include <lcddraw.h>
 
-void state_advance(){
-  switch(switch_state_changed){
+void state_advance(int state){
+  switch(state){
   case 1:
+    clearScreen(COLOR_BLACK);
+    drawCyanTriangle();
     beep();
     greenLights();
-    switch_state_changed = 0;
+    state = 0;
     break;
   case 2:
+    clearScreen(COLOR_BLACK);
+    drawRect();
     song();
     dimLights();
-    switch_state_changed = 0;
+    state = 0;
     break;
   case 3:
+    clearScreen(COLOR_BLACK);
+    flagShape();
     errorSong();
     redLights();
-    switch_state_changed = 0;
+    state = 0;
     break;
   case 4:
+    drawInit();
     buzzer_off();
-    switch_state_changed = 0;
+    state = 0;
     break;
   default:
     break;

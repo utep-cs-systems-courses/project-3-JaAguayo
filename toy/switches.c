@@ -3,11 +3,11 @@
 #include "led.h"
 #include "buzzer.h"
 #include "stateMachines.h"
-#include "lcdutils.h"
-#include "lcddraw.h"
+#include <lcdutils.h>
+#include <lcddraw.h>
 #include "display.h"
 
-char switch_state_changed,switch_state_down;
+char switch_state_changed,switch_state_down,state;
 int redrawScreen;
 
 static char
@@ -25,6 +25,7 @@ switch_init(){
   P2OUT |= SWITCHES;
   P2DIR &= ~SWITCHES;
   switch_update_interrupt_sense();
+  switch_interrupt_handler();
 }
 
 void
@@ -32,26 +33,22 @@ switch_interrupt_handler(){
   char p2val = switch_update_interrupt_sense();
 
   if (p2val & SW1 ? 0 : 1){
-    switch_state_changed = 1;
+    state_advance(1);
     redrawScreen = 1;
   }
 
   else if (p2val & SW2 ? 0 : 1){
-    switch_state_changed = 2;
+    state_advance(2);
     redrawScreen = 1;
   }
 
   else if (p2val & SW3 ? 0 : 1){
-    switch_state_changed = 3;
+    state_advance(3);
     redrawScreen  = 1;
   }
 
   else if (p2val & SW4 ? 0 : 1){
-    switch_state_changed = 4;
-    redrawScreen = 0;
-  }
-  else{
-    clearWindow();
-    switch_state_changed = 0;
+    state_advance(4);
+    redrawScreen = 1;
   }
 }

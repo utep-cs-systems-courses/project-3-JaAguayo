@@ -5,6 +5,7 @@ void drawCyanTriangle();
 void drawRect();
 void clearWindow();
 void drawInit();
+void flagShape();
 
 extern int redrawScreen;
 

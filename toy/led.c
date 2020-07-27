@@ -6,6 +6,7 @@
 
 void led_init(){
   P1DIR |= LEDS;
+  switch_state_changed = 1;
 }
 
 void led_update(){
@@ -39,8 +40,14 @@ void redLights(){
 }
 
 void dimLights(){
-  for(int j=0;j<10000;j++){
+  for(int j=0;j<1000;j++){
+    P1OUT = LED_GREEN;
+    __delay_cycles(10000);
     P1OUT = LED_RED;
+    __delay_cycles(10000);
+    P1OUT = !LED_GREEN;
+    __delay_cycles(10000);
     P1OUT = !LED_RED;
+    __delay_cycles(10000);
   }
 }

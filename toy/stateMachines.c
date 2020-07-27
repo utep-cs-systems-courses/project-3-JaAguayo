@@ -3,6 +3,8 @@
 #include "led.h"
 #include "switches.h"
 #include "buzzer.h"
+#include "lcdutils.h"
+#include "lcddraw.h"
 
 void state_advance(){
   switch(switch_state_changed){

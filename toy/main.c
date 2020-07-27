@@ -31,9 +31,11 @@ int main(void){
   for(;;){
     while(!redrawScreen){
       P1OUT &= ~LED_GREEN;
-      __delay_cycles(30000);
-      redrawScreen = 0;
+      or_sr(0x10);
     }
+    P1OUT |= LED_GREEN;
+    __delay_cycles(30000);
+    redrawScreen = 0;
   }
 
   void wdt_c_handler(){

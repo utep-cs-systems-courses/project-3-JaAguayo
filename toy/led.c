@@ -2,7 +2,7 @@
 #include "led.h"
 #include "stateMachines.h"
 #include "buzzer.h"
-#include "switches.c"
+#include "switches.h"
 
 void led_init(){
   P1DIR |= LEDS;

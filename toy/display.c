@@ -1,11 +1,11 @@
 #include <msp430.h>
-//#include <shape.h>
 #include "switches.h"
 #include "led.h"
 #include "buzzer.h"
 #include "stateMachines.h"
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "display.h"
 
 int redrawScreen;
 

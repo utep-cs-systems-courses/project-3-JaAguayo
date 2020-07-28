@@ -39,16 +39,16 @@ void drawRect(){
   fillRectangle(42,27,47,37,COLOR_YELLOW);
 }
 
-void drawInit(){
+void drawInit(){ //outputs the string for 8x12 at the beginning and on button 4
   redrawScreen=1;
   clearScreen(COLOR_FOREST_GREEN);
 
-  drawString5x7(10,30,"Comp Arch1 SU 2020",COLOR_VIOLET,COLOR_BLACK);
+  drawString5x7(10,30,"Press A Button",COLOR_VIOLET,COLOR_BLACK);
   drawString8x12(10,40,"PROJECT 3",COLOR_VIOLET,COLOR_BLACK);
   redrawScreen = 1;
 }
 
-void clearWindow(){
+void clearWindow(){ //clears screen but makes it to where I dont need a parameter
   clearScreen(COLOR_BLACK);
-  // redrawScreen = 1;
+  redrawScreen = 1;
 }

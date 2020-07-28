@@ -25,7 +25,7 @@ switch_init(){
   P2OUT |= SWITCHES;
   P2DIR &= ~SWITCHES;
   switch_update_interrupt_sense();
-  switch_interrupt_handler();
+  //switch_interrupt_handler();
 }
 
 void
@@ -33,23 +33,23 @@ switch_interrupt_handler(){
   char p2val = switch_update_interrupt_sense();
 
   if (p2val & SW1 ? 0 : 1){
-    state_advance(1);
+    state = 1;
     redrawScreen = 1;
   }
 
   else if (p2val & SW2 ? 0 : 1){
-    state_advance(2);
-    blink = 1;
+    state = 2;
+    blink = 1;  //blink used in interrupt do call advance on less time
     redrawScreen = 1;
   }
 
   else if (p2val & SW3 ? 0 : 1){
-    state_advance(3);
+    state = 3;
     redrawScreen  = 1;
   }
 
   else if (p2val & SW4 ? 0 : 1){
-    state_advance(4);
+    state = 4;
     redrawScreen = 1;
   }
 }

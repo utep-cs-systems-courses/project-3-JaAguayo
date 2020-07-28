@@ -21,14 +21,14 @@ int main(void){
   led_init();
   enableWDTInterrupts();
   lcd_init();
-  drawInit();
+  drawInit();  //output the start screen
   
-  or_sr(0x8);
+  or_sr(0x8); //GIE on
 
   for(;;){
     while(!redrawScreen){
       P1OUT &= ~LED_GREEN;
-      or_sr(0x10);
+      or_sr(0x10);   //CPU OFF
     }
     P1OUT |= LED_GREEN;
     __delay_cycles(30000);

@@ -9,7 +9,7 @@ AR		= msp430-elf-ar
 
 all: toy.elf
 
-toy.elf: ${COMMON_OBJECTS} main.o stateMachines.o led.o p2_interrupt_handler.o switches.o buzzer.o display.o wdInterruptHandler.o ../lib/libTimer.a
+toy.elf: ${COMMON_OBJECTS} main.o stateMachinesAssem.o led.o p2_interrupt_handler.o switches.o buzzer.o display.o wdInterruptHandler.o ../lib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lLcd -lTimer -lShape 
 
 load: toy.elf

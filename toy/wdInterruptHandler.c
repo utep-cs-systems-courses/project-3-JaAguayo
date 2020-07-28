@@ -1,5 +1,5 @@
 #include <msp430.h>
-#include "stateMachines.h"
+#include "stateMachinesAssem.h"
 #include "led.h"
 #include "switches.h"
 

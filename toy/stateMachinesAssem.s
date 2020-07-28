@@ -13,18 +13,19 @@ JT:
 	.global state_advance
 
 state_advance:
-	cmp #5,&state
-	jhs default
-	mov &state,r12
-	add r12,r12
+	cmp.b #5,&state		;compare switch to 5
+	jhs default		;if carry jump to default
+	mov.b &state,r12
+	add.b r12,r12		;make space
 	mov JT(r12),r0
 
 case1:
-	add #1,redrawScreen
+	add #1,redrawScreen	;set redraw = 1
 	call #clearWindow
 	call #drawCyanTriangle
 	call #beep
 	call #greenLights
+	mov.b #0,&state		;set state = 0
 	jmp end
 
 case2:
@@ -33,6 +34,7 @@ case2:
 	call #drawRect
 	call #song
 	call #dimRed
+	mov.b #0,&state
 	jmp end
 
 case3:
@@ -41,12 +43,13 @@ case3:
 	call #flagShape
 	call #errorSong
 	call #redLights
+	mov.b #0,&state
 	jmp end
 
 case4:
 	add #1,redrawScreen
 	call #drawInit
-	call #buzzer_off
+	mov.b #0,&state
 	jmp end
 
 default:

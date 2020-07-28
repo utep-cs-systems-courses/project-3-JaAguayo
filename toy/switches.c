@@ -7,7 +7,7 @@
 #include <lcddraw.h>
 #include "display.h"
 
-char switch_state_changed,switch_state_down,state;
+char switch_state_changed,switch_state_down,state,blink;
 int redrawScreen;
 
 static char
@@ -39,6 +39,7 @@ switch_interrupt_handler(){
 
   else if (p2val & SW2 ? 0 : 1){
     state_advance(2);
+    blink = 1;
     redrawScreen = 1;
   }
 

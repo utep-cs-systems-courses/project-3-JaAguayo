@@ -23,15 +23,15 @@ int main(void){
   lcd_init();
   drawInit();
   
-  or_sr(0x18);
+  or_sr(0x8);
 
   for(;;){
     while(!redrawScreen){
       P1OUT &= ~LED_GREEN;
-      or_sr(0x18);
+      or_sr(0x10);
     }
     P1OUT |= LED_GREEN;
-    __delay_cycles(250000);
+    __delay_cycles(30000);
     redrawScreen = 0;
   }
 }

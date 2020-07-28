@@ -40,14 +40,16 @@ void redLights(){
 }
 
 void dimLights(){
-  for(int j=0;j<1000;j++){
-    P1OUT = LED_GREEN;
-    __delay_cycles(10000);
-    P1OUT = LED_RED;
-    __delay_cycles(10000);
-    P1OUT = !LED_GREEN;
-    __delay_cycles(10000);
-    P1OUT = !LED_RED;
-    __delay_cycles(10000);
+  for(int j=0;j<10000;j++){
+    P1OUT |= LED_RED;
+    P1OUT &= ~LED_RED;
+  }
+}
+
+void dimRed(){
+  for(int i = 0;i<20;i++){
+    dimLights();
+    __delay_cycles(2000000);
+    P1OUT &= ~LED_RED;
   }
 }

@@ -49,6 +49,6 @@ void drawInit(){
 }
 
 void clearWindow(){
-  fillRectangle (37,22,57,47,COLOR_WHITE);
-  redrawScreen = 1;
+  clearScreen(COLOR_BLACK);
+  // redrawScreen = 1;
 }

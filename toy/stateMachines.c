@@ -10,21 +10,21 @@
 void state_advance(int state){
   switch(state){
   case 1:
-    clearScreen(COLOR_BLACK);
+    clearWindow();
     drawCyanTriangle();
     beep();
     greenLights();
     state = 0;
     break;
   case 2:
-    clearScreen(COLOR_BLACK);
+    clearWindow();
     drawRect();
     song();
-    dimLights();
+    dimRed();
     state = 0;
     break;
   case 3:
-    clearScreen(COLOR_BLACK);
+    clearWindow();
     flagShape();
     errorSong();
     redLights();

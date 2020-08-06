@@ -25,6 +25,8 @@ int main(void){
   
   or_sr(0x8); //GIE on
 
+  /*
+
   for(;;){
     while(!redrawScreen){
       P1OUT &= ~LED_GREEN;
@@ -34,4 +36,31 @@ int main(void){
     __delay_cycles(30000);
     redrawScreen = 0;
   }
+  */
+  for(;;){
+    while(!redrawScreen){
+      P1OUT &= ~LED_GREEN;
+      or_sr(0x10);
+    }
+    P1OUT |= LED_GREEN;
+    __delay_cycles(30000);
+    redrawScreen = 0;
+  }
 }
+
+void wdt_c_handler(){
+  static short count = 0;
+
+  count++;
+  if (count == 125){
+    state_advance();
+    count = 0;
+  }
+  if (blink){
+    if (count == 5){
+      state_advance();
+      count = 0;
+    }
+  }
+}
+//AR		= msp430-elf-ar
